@@ -1,11 +1,11 @@
 #include<iostream.h>
-#include<graphics.h>
+#include<graphics.h>/*For use of circle, rectangle and fillellipse command to use as snake and border*/
 #include<conio.h>
 #include<stdlib.h>
-#include<dos.h>
-#include<fstream.h>
+#include<dos.h>/*to use the function delay*/
+#include<fstream.h>/*To use file that saves the highest score*/
 int a[2000],b[2000],x,flag,y,gameover,fx,fy,count,d,n;
-void initial()
+void initial() /*Initial data for the border and the starting of snake and the location of the food*/
  {
  x=6,flag=0,y=54,gameover=0,count=0;
   a[0]=x;
@@ -22,7 +22,7 @@ void initial()
   if(fy<=48||fy%6!=0)
   goto d;
   }
-void movement()
+void movement()/* This is used to detect if a key is pressed during running of the program*/
 {
  if(kbhit())
  {
@@ -45,7 +45,7 @@ void movement()
   }
  }
 }
-void check()
+void check()/* It is main part of program that checks that snake is not touched to the boundry and to itself. It also increases the score when food is eatten by the snake.*/
 {
  int i,l,k;
  for(i=n;i>=1;i--)
@@ -110,9 +110,9 @@ void check()
 }
 void main()
 { int l;
-  textmode(1);
-  textcolor(BLACK);
-  textbackground(GREEN);
+  textmode(1);/*Text mode in c++*/
+  textcolor(BLACK);/*Adding black text colour*/
+  textbackground(GREEN);/*Adding green background color*/
   cprintf("               SNAKE GAME               \n");
   textbackground(YELLOW);
   cprintf("              INSTRUCTIONS              \n");
@@ -131,7 +131,7 @@ void main()
     rectangle(0,450,600,48);
     movement();
     check();
-    delay(100);
+    delay(100);/* Using delay to slow down the speed of program so that movement of snake can be seen.*/
     cleardevice();
   }
  delay(1000);
@@ -149,12 +149,12 @@ void main()
  {
   ofstream myfile;
   myfile.open("high.txt");
-  myfile<<count;
+  myfile<<count;/* Changes high score if the score achieved by the person is more than the highest score so far.*/
   goto p;
  }
  myfile.close();
  textcolor(BLACK);
  textbackground(WHITE);
  cprintf("HIGHEST SCORE IS :%d ",l);
- getch();
+ getch();/*holds screen and wait for key to be pressed*/
 }
